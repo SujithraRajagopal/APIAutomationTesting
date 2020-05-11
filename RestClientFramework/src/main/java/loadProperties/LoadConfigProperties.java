@@ -19,7 +19,7 @@ public class LoadConfigProperties {
 		prop = new Properties();
 
 		try {
-			ip = new FileInputStream("C:\\Workspace\\RestClientFramework\\src\\main\\java\\configs\\config.properties");
+			ip = new FileInputStream("C:\\Users\\Sam\\git\\APIAutomationTesting\\RestClientFramework\\src\\main\\java\\configs\\config.properties");
 
 			prop.load(ip);
 

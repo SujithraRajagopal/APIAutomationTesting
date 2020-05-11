@@ -1,5 +1,6 @@
 package testMethods;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -12,11 +13,17 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import client.HttpGetClient;
+import client.HttpPostClient;
 import jsonParsingUtil.JSONParsingUtility;
+import jsonUsers.JSONUsers;
 import loadProperties.LoadConfigProperties;
 
-public class TestGetMethod extends LoadConfigProperties {
+public class TestHttpMethods extends LoadConfigProperties {
 
 	LoadConfigProperties loadprop;
 	String EndURL;
@@ -24,6 +31,7 @@ public class TestGetMethod extends LoadConfigProperties {
 	String URI;
 	HttpGetClient getclient;
 	CloseableHttpResponse closeableresponse;
+	HttpPostClient postClient;
 
 	@BeforeMethod
 	public void setUp() {
@@ -37,7 +45,7 @@ public class TestGetMethod extends LoadConfigProperties {
 
 	}
 
-	@Test(priority=2)
+	@Test(priority = 2)
 	public void HttpGetCall() throws ClientProtocolException, IOException {
 
 		getclient = new HttpGetClient();
@@ -88,7 +96,7 @@ public class TestGetMethod extends LoadConfigProperties {
 
 	}
 
-	@Test(priority=1)
+	@Test(priority = 1)
 	public void HttpGetCallWithHeaders() throws ClientProtocolException, IOException {
 
 		getclient = new HttpGetClient();
@@ -140,6 +148,66 @@ public class TestGetMethod extends LoadConfigProperties {
 		}
 
 		System.out.println("The header for GET repsonse is " + headermap);
+
+	}
+
+	@Test(priority = 3)
+	public void HttpPostCall() throws JsonGenerationException, JsonMappingException, IOException {
+
+		postClient = new HttpPostClient();
+
+		// Header
+		HashMap<String, String> headermap = new HashMap<String, String>();
+		headermap.put("Content-Type", "application/json");
+
+		// create json
+		ObjectMapper mapper = new ObjectMapper();
+		JSONUsers users = new JSONUsers("sss", "dev");
+
+		// json object
+		mapper.writeValue(new File(
+				"C:\\Users\\Sam\\git\\APIAutomationTesting\\RestClientFramework\\src\\main\\java\\jsonUsers\\jsonUsers.data"),
+				users);
+
+		// json object to json string
+		String userJSonString = mapper.writeValueAsString(users);
+		System.out.println(userJSonString);
+
+		closeableresponse = postClient.httpPostCall(URI, userJSonString, headermap);
+
+		// status code
+		int statuscode = closeableresponse.getStatusLine().getStatusCode();
+		System.out.println(statuscode);
+
+		Assert.assertEquals(statuscode, HttpPostClient.response_201);
+
+		// json object
+		String jsonresponseString = EntityUtils.toString(closeableresponse.getEntity(), "UTF-8");
+		JSONObject jsonobject = new JSONObject(jsonresponseString);
+		System.out.println(jsonobject);
+
+		// json object to java object
+		/*
+		 * String responsename = JSONParsingUtility.getValueByJpath(jsonobject,
+		 * "/name"); System.out.println(responsename); Assert.assertEquals(responsename,
+		 * "sss");
+		 */
+
+		JSONUsers userresponseobj = mapper.readValue(jsonresponseString, JSONUsers.class);
+		System.out.println(userresponseobj);
+
+		System.out.println(users.getName().equals(userresponseobj.getName()));
+		System.out.println(users.getJob().equals(userresponseobj.getJob()));
+
+		// header
+		Header[] headerarray = closeableresponse.getAllHeaders();
+
+		HashMap<String, String> responseheadermap = new HashMap<String, String>();
+
+		for (Header mapheader : headerarray) {
+			responseheadermap.put(mapheader.getName(), mapheader.getValue());
+		}
+		System.out.println(responseheadermap);
 
 	}
 
