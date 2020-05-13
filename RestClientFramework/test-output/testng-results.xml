@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-05-09T00:04:48 IST" name="Default suite" finished-at="2020-05-09T00:04:50 IST" duration-ms="1582">
+  <suite started-at="2020-05-11T23:58:57 IST" name="Default suite" finished-at="2020-05-11T23:59:00 IST" duration-ms="3288">
     <groups>
     </groups>
-    <test started-at="2020-05-09T00:04:48 IST" name="Default test" finished-at="2020-05-09T00:04:50 IST" duration-ms="1582">
-      <class name="testMethods.TestGetMethod">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:testMethods.TestGetMethod@78b729e6]" started-at="2020-05-09T00:04:48 IST" name="setUp" finished-at="2020-05-09T00:04:48 IST" duration-ms="22" status="PASS">
+    <test started-at="2020-05-11T23:58:57 IST" name="Default test" finished-at="2020-05-11T23:59:00 IST" duration-ms="3288">
+      <class name="testMethods.TestHttpMethods">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testMethods.TestHttpMethods@23f7d05d]" started-at="2020-05-11T23:58:57 IST" name="setUp" finished-at="2020-05-11T23:58:57 IST" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="HttpGetCallWithHeaders()[pri:1, instance:testMethods.TestGetMethod@78b729e6]" started-at="2020-05-09T00:04:48 IST" name="HttpGetCallWithHeaders" finished-at="2020-05-09T00:04:50 IST" duration-ms="1250" status="PASS">
+        <test-method signature="HttpGetCallWithHeaders()[pri:1, instance:testMethods.TestHttpMethods@23f7d05d]" started-at="2020-05-11T23:58:57 IST" name="HttpGetCallWithHeaders" finished-at="2020-05-11T23:58:59 IST" duration-ms="1520" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- HttpGetCallWithHeaders -->
-        <test-method signature="HttpGetCall()[pri:2, instance:testMethods.TestGetMethod@78b729e6]" started-at="2020-05-09T00:04:50 IST" name="HttpGetCall" finished-at="2020-05-09T00:04:50 IST" duration-ms="231" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- HttpGetCall -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:testMethods.TestGetMethod@78b729e6]" started-at="2020-05-09T00:04:50 IST" name="setUp" finished-at="2020-05-09T00:04:50 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testMethods.TestHttpMethods@23f7d05d]" started-at="2020-05-11T23:58:59 IST" name="setUp" finished-at="2020-05-11T23:58:59 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-      </class> <!-- testMethods.TestGetMethod -->
+        <test-method signature="HttpGetCall()[pri:2, instance:testMethods.TestHttpMethods@23f7d05d]" started-at="2020-05-11T23:58:59 IST" name="HttpGetCall" finished-at="2020-05-11T23:58:59 IST" duration-ms="401" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- HttpGetCall -->
+        <test-method signature="HttpPostCall()[pri:3, instance:testMethods.TestHttpMethods@23f7d05d]" started-at="2020-05-11T23:58:59 IST" name="HttpPostCall" finished-at="2020-05-11T23:59:00 IST" duration-ms="1266" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- HttpPostCall -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testMethods.TestHttpMethods@23f7d05d]" started-at="2020-05-11T23:58:59 IST" name="setUp" finished-at="2020-05-11T23:58:59 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+      </class> <!-- testMethods.TestHttpMethods -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
